@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Context Courier User Guide</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f5ef;
+        --text: #1f2328;
+        --muted: #5d646f;
+        --line: #d8d1c2;
+        --code: #ece6d8;
+        --accent: #0d6b57;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #151719;
+          --text: #e8e5dc;
+          --muted: #b0aaa0;
+          --line: #34312b;
+          --code: #24211d;
+          --accent: #7bd6bf;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.6;
+      }
+      main {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 48px 24px 72px;
+      }
+      h1,
+      h2 {
+        line-height: 1.2;
+      }
+      h1 {
+        font-size: 2.4rem;
+        margin-bottom: 0.25rem;
+      }
+      h2 {
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
+      }
+      p.lead {
+        color: var(--muted);
+        font-size: 1.15rem;
+      }
+      code {
+        background: var(--code);
+        border-radius: 4px;
+        padding: 0.12rem 0.28rem;
+      }
+      pre {
+        background: var(--code);
+        border-radius: 8px;
+        overflow-x: auto;
+        padding: 1rem;
+      }
+      pre code {
+        background: transparent;
+        padding: 0;
+      }
+      a {
+        color: var(--accent);
+      }
+      .status {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .status span {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Context Courier User Guide</h1>
+      <p class="lead">
+        A local-first CLI for structured handoffs between workspaces.
+      </p>
+
+      <h2>What It Does</h2>
+      <p>
+        Context Courier lets one local workspace leave actionable Markdown context in another
+        local workspace's <code>.courier/inbox</code>. The receiver can list, read,
+        acknowledge, and complete the handoff. The sender can later check the current status.
+      </p>
+
+      <div class="status">
+        <span>new</span>
+        <span>acknowledged</span>
+        <span>done</span>
+      </div>
+
+      <h2>Install</h2>
+      <pre><code>npm install
+npm run build</code></pre>
+
+      <h2>Core Workflow</h2>
+      <pre><code>cd /tmp/app-project
+courier init
+courier target add library-project /tmp/library-project
+courier send --to library-project --title "Auth helper fails" "Token validation accepts empty strings."
+
+cd /tmp/library-project
+courier inbox
+courier read &lt;handoff-id&gt;
+courier ack &lt;handoff-id&gt; --note "I will inspect this."
+courier done &lt;handoff-id&gt; --note "Fixed validation."
+
+cd /tmp/app-project
+courier sent
+courier status &lt;handoff-id&gt;</code></pre>
+
+      <h2>Receiver Checks</h2>
+      <p>
+        The MVP does not run a daemon, watcher, notification service, or agent integration.
+        The receiver explicitly checks handoffs with <code>courier inbox</code>. Future receiver
+        detection is intentionally left open for design review.
+      </p>
+
+      <h2>Attachments</h2>
+      <p>
+        <code>courier send --file &lt;path&gt;</code> copies the source file into the target
+        workspace under <code>.courier/attachments/&lt;handoff-id&gt;/</code>. Small text files
+        under 100 KB are embedded in the Markdown handoff. Large or binary-looking files are
+        copied but not embedded.
+      </p>
+
+      <h2>Safety</h2>
+      <p>
+        Courier writes only under <code>.courier/</code> directories, except for reading source
+        files passed to <code>--file</code>. It does not control terminals, automate agents,
+        run target commands, contact network services, or implement MCP behavior.
+      </p>
+
+      <h2>Codex Harness</h2>
+      <p>
+        The repository includes a lightweight project harness adapted from
+        <a href="https://github.com/s-hiraoku/codex-harnesses">s-hiraoku/codex-harnesses</a>.
+        Use <code>npm run verify</code> before finalizing changes. The harness provides
+        <code>scripts/verify.sh</code>, <code>scripts/checkpoint.sh</code>, and a
+        <code>ledger/</code> for resumable task state, decisions, risks, and verification notes.
+      </p>
+
+      <h2>Project-Agnostic</h2>
+      <p>
+        Rig and Synapse are background context only. Rig is only an example target workspace.
+        Context Courier is project-agnostic.
+      </p>
+    </main>
+  </body>
+</html>

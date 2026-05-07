@@ -1,0 +1,23 @@
+# Agent Instructions
+
+- Keep this project small.
+- This is a local-first CLI, not a platform.
+- The inbox files are the API.
+- The handoff lifecycle is part of the product.
+- Do not reduce the MVP to send-only behavior.
+- Prefer explicit file-based behavior.
+- Prefer simple functions over generalized architecture.
+- Do not add PTY automation.
+- Do not add terminal control.
+- Do not add agent auto-submission.
+- Do not add network services.
+- Do not add MCP integration without explicit design review.
+- Add tests for CLI and filesystem behavior.
+- Keep README updated when commands or behavior change.
+- At the start of work in a workspace, or during handoff review, run `courier inbox`.
+- Do not add automatic receiver detection in the MVP.
+- Future receiver detection is intentionally open for design review.
+- This repository uses a lightweight Codex harness adapted from `s-hiraoku/codex-harnesses`.
+- Run `npm run verify` before finalizing changes.
+- For long-running or interrupted work, update `ledger/current.md` or run `scripts/checkpoint.sh`.
+- Record durable product decisions in `ledger/decisions.md`, risks in `ledger/risks.md`, and meaningful verification in `ledger/verification.md`.
