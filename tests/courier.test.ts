@@ -16,7 +16,7 @@ import {
 } from "../src/courier.js";
 import { loadConfig, writeConfig } from "../src/config.js";
 import { CourierError } from "../src/errors.js";
-import { parseFrontmatter } from "../src/frontmatter.js";
+import { parseFrontmatter, serializeFrontmatter } from "../src/frontmatter.js";
 import { readHandoffFile } from "../src/handoff.js";
 import { expandHome, workspacePaths } from "../src/paths.js";
 
@@ -93,6 +93,39 @@ describe("config and targets", () => {
     await expect(sendCommand(source, { to: "rig", message: "hello" })).rejects.toThrow(
       'Target "rig" was not found in .courier/config.json.'
     );
+  });
+
+  it("creates a configured target inbox before sending", async () => {
+    const source = await mkdir("source");
+    const target = await mkdir("target");
+    await initWorkspace(source);
+    await writeConfig(source, {
+      targets: {
+        custom: {
+          path: target,
+          inbox: ".courier/custom-inbox",
+          mode: "manual"
+        }
+      }
+    });
+
+    const sent = await sendCommand(source, { to: "custom", title: "Custom inbox", message: "hello" });
+
+    expect(sent).toContain(path.join(target, ".courier", "custom-inbox"));
+    await expect(fs.stat(path.join(target, ".courier", "custom-inbox"))).resolves.toBeTruthy();
+  });
+});
+
+describe("frontmatter", () => {
+  it("quotes scalar values containing YAML mapping indicators", () => {
+    const frontmatter = serializeFrontmatter({
+      title: "Bug: auth fails",
+      url: "https://example.test/path"
+    });
+
+    expect(frontmatter).toContain('title: "Bug: auth fails"');
+    expect(frontmatter).toContain("url: https://example.test/path");
+    expect(parseFrontmatter(`${frontmatter}body`).data.title).toBe("Bug: auth fails");
   });
 });
 

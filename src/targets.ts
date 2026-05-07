@@ -89,6 +89,6 @@ export async function ensureTargetWorkspace(target: ResolvedTarget): Promise<voi
   } catch {
     throw new CourierError(`Target path does not exist:\n${target.path}`);
   }
-  await fs.mkdir(path.join(target.path, ".courier", "inbox"), { recursive: true });
+  await fs.mkdir(target.inbox, { recursive: true });
   await fs.mkdir(path.join(target.path, ".courier", "attachments"), { recursive: true });
 }

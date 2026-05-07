@@ -89,7 +89,7 @@ export function parseFrontmatter(markdown: string): { data: Frontmatter; body: s
 }
 
 function quote(value: string): string {
-  if (/^[A-Za-z0-9_./:@ -]+$/.test(value)) return value;
+  if (/^[A-Za-z0-9_./:@ -]+$/.test(value) && !/:\s/.test(value)) return value;
   return JSON.stringify(value);
 }
 
