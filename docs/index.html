@@ -151,6 +151,15 @@ courier status &lt;handoff-id&gt;</code></pre>
         run target commands, contact network services, or implement MCP behavior.
       </p>
 
+      <h2>Codex Harness</h2>
+      <p>
+        The repository includes a lightweight project harness adapted from
+        <a href="https://github.com/s-hiraoku/codex-harnesses">s-hiraoku/codex-harnesses</a>.
+        Use <code>npm run verify</code> before finalizing changes. The harness provides
+        <code>scripts/verify.sh</code>, <code>scripts/checkpoint.sh</code>, and a
+        <code>ledger/</code> for resumable task state, decisions, risks, and verification notes.
+      </p>
+
       <h2>Project-Agnostic</h2>
       <p>
         Rig and Synapse are background context only. Rig is only an example target workspace.

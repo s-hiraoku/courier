@@ -17,3 +17,7 @@
 - At the start of work in a workspace, or during handoff review, run `courier inbox`.
 - Do not add automatic receiver detection in the MVP.
 - Future receiver detection is intentionally open for design review.
+- This repository uses a lightweight Codex harness adapted from `s-hiraoku/codex-harnesses`.
+- Run `npm run verify` before finalizing changes.
+- For long-running or interrupted work, update `ledger/current.md` or run `scripts/checkpoint.sh`.
+- Record durable product decisions in `ledger/decisions.md`, risks in `ledger/risks.md`, and meaningful verification in `ledger/verification.md`.

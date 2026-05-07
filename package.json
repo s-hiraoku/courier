@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsc && chmod +x dist/cli.js",
     "test": "vitest run",
-    "dev": "tsx src/cli.ts"
+    "dev": "tsx src/cli.ts",
+    "verify": "bash scripts/verify.sh"
   },
   "dependencies": {
     "commander": "^12.1.0",

@@ -43,6 +43,24 @@ After build, the package exposes:
 courier
 ```
 
+## Verification Harness
+
+This repository includes a small project-local harness adapted from [s-hiraoku/codex-harnesses](https://github.com/s-hiraoku/codex-harnesses).
+
+Run the same verification entrypoint locally and in CI:
+
+```bash
+npm run verify
+```
+
+The harness is intentionally small:
+
+- `scripts/verify.sh` runs build, tests, and `npm audit`.
+- `scripts/checkpoint.sh` appends a resumable checkpoint to `ledger/current.md`.
+- `ledger/` records task state, durable decisions, risks, and verification runs.
+
+It does not add hooks, terminal automation, agent orchestration, MCP behavior, or a background process.
+
 ## Workspace Layout
 
 Each workspace can contain:
