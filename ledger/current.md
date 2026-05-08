@@ -23,7 +23,7 @@ Use this file to keep long-running Context Courier work resumable.
 - [x] Add CI and GitHub Pages guide
 - [x] Open draft PR
 - [x] Adapt codex-harnesses verification and ledger patterns
-- [ ] Keep PR checks passing after harness update
+- [x] Keep PR checks passing after harness update
 
 ## Progress
 
@@ -31,6 +31,7 @@ Use this file to keep long-running Context Courier work resumable.
 - 2026-05-07 JST: Added temporary-directory tests for config, targets, send, attachments, inbox, prefix matching, lifecycle, and sender/receiver status.
 - 2026-05-07 JST: Added README, AGENTS instructions, GitHub Pages user guide, CI, and draft PR #1.
 - 2026-05-07 JST: Added a project-local Codex harness adapted from s-hiraoku/codex-harnesses.
+- 2026-05-08 JST: Confirmed the merged MVP still verifies locally and clarified source-checkout CLI usage.
 
 ## Blockers
 
@@ -38,7 +39,7 @@ Use this file to keep long-running Context Courier work resumable.
 
 ## Next Step
 
-- Run `scripts/verify.sh`, update the PR branch, and confirm CI remains green.
+- Open a follow-up PR with the readiness documentation and ledger cleanup.
 
 ## Checkpoints
 

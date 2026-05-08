@@ -4,6 +4,14 @@ Use this file to track known risks during long-running work.
 
 ## Open Risks
 
+### 2026-05-08: Source Checkout May Not Have `courier` On PATH
+
+- Risk: Contributors may run `courier inbox` from a checkout before the package is installed or linked.
+- Impact: The shell reports `courier: command not found` even though the local CLI works through the development script.
+- Likelihood: Medium.
+- Mitigation: README, AGENTS, and the user guide now document `npm run dev -- inbox` for source checkouts and `npm link` for local command exposure.
+- Status: Mitigated.
+
 ### 2026-05-07: Manual Receiver Checks Can Be Missed
 
 - Risk: Receivers may forget to run `courier inbox`.

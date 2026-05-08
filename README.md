@@ -35,12 +35,22 @@ During development:
 
 ```bash
 npm run dev -- init
+npm run dev -- inbox
 ```
 
 After build, the package exposes:
 
 ```bash
 courier
+```
+
+When working from a source checkout before the package is installed or linked, use
+`npm run dev -- <command>` for the same CLI behavior. To make `courier` available
+from the checkout while developing, run:
+
+```bash
+npm link
+courier inbox
 ```
 
 ## Verification Harness
