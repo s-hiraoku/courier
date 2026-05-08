@@ -13,6 +13,20 @@ Use this file to record meaningful verification runs.
 
 ## Runs
 
+### 2026-05-08 JST
+
+- Command: `npm run verify`
+- Scope: current workspace readiness check
+- Result: passed
+- Notes: Build passed, 12 Vitest tests passed, and `npm audit` reported 0 vulnerabilities. `npm run dev -- inbox` also returned `No active handoffs.`.
+
+### 2026-05-08 JST
+
+- Command: `npm run verify`
+- Scope: PR #2 review feedback for source-checkout CLI documentation
+- Result: passed
+- Notes: Added dependency-installation prerequisites to the documented `npm run dev -- inbox` fallback. Build passed, 12 Vitest tests passed, and `npm audit` reported 0 vulnerabilities.
+
 ### 2026-05-07 JST
 
 - Command: `npm ci`

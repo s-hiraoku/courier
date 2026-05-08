@@ -14,7 +14,7 @@
 - Do not add MCP integration without explicit design review.
 - Add tests for CLI and filesystem behavior.
 - Keep README updated when commands or behavior change.
-- At the start of work in a workspace, or during handoff review, run `courier inbox`.
+- At the start of work in a workspace, or during handoff review, run `courier inbox`; from an unlinked source checkout, run `npm install` first if dependencies are missing, then use `npm run dev -- inbox`.
 - Do not add automatic receiver detection in the MVP.
 - Future receiver detection is intentionally open for design review.
 - This repository uses a lightweight Codex harness adapted from `s-hiraoku/codex-harnesses`.
