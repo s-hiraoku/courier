@@ -113,9 +113,11 @@
       <pre><code>npm install
 npm run build</code></pre>
       <p>
-        From a source checkout before linking or installing the package, run commands with
-        <code>npm run dev -- &lt;command&gt;</code>. To expose <code>courier</code> locally
-        during development, run <code>npm link</code> after building.
+        From a source checkout before linking or installing the package, run
+        <code>npm install</code> first so development dependencies are available, then
+        run commands with <code>npm run dev -- &lt;command&gt;</code>. To expose
+        <code>courier</code> locally during development, run <code>npm run build</code>
+        and <code>npm link</code>.
       </p>
 
       <h2>Core Workflow</h2>

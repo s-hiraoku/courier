@@ -9,7 +9,7 @@ Use this file to track known risks during long-running work.
 - Risk: Contributors may run `courier inbox` from a checkout before the package is installed or linked.
 - Impact: The shell reports `courier: command not found` even though the local CLI works through the development script.
 - Likelihood: Medium.
-- Mitigation: README, AGENTS, and the user guide now document `npm run dev -- inbox` for source checkouts and `npm link` for local command exposure.
+- Mitigation: README, AGENTS, and the user guide now document that source checkouts need dependencies installed before `npm run dev -- inbox`, and document `npm run build` plus `npm link` for local command exposure.
 - Status: Mitigated.
 
 ### 2026-05-07: Manual Receiver Checks Can Be Missed

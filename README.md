@@ -44,11 +44,13 @@ After build, the package exposes:
 courier
 ```
 
-When working from a source checkout before the package is installed or linked, use
+When working from a source checkout before the package is installed or linked,
+run `npm install` first so the development dependencies are available, then use
 `npm run dev -- <command>` for the same CLI behavior. To make `courier` available
-from the checkout while developing, run:
+from the checkout while developing, build and link it:
 
 ```bash
+npm run build
 npm link
 courier inbox
 ```
